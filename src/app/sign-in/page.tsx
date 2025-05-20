@@ -1,12 +1,12 @@
-import { SignIn } from '@/features/signin';
-import React from 'react'
+import { SignIn } from "@/features/signin";
+import React from "react";
 
 export default async function page() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center text-white bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
+    <div className="flex min-h-svh flex-col items-center justify-center bg-muted p-6 md:p-10">
+      <div className="w-full max-w-sm md:max-w-3xl">
         <SignIn />
       </div>
-    </main>
+    </div>
   );
 }

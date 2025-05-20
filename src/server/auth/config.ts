@@ -2,6 +2,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import type { DefaultSession, NextAuthConfig } from "next-auth";
 import type { Adapter } from "next-auth/adapters";
 import GoogleProvider from "next-auth/providers/google";
+import Nodemailer from "next-auth/providers/nodemailer";
 
 import { env } from "@/env.mjs";
 import { db } from "@/server/db";
@@ -45,6 +46,18 @@ export const authConfig = {
         },
       },
     }),
+    // node mailer for magic link
+    Nodemailer({
+      server: {
+        host: env.EMAIL_SERVER_HOST,
+        port: env.EMAIL_SERVER_PORT,
+        auth: {
+          user: env.EMAIL_SERVER_USER,
+          pass: env.EMAIL_SERVER_PASSWORD,
+        },
+      },
+      from: env.EMAIL_FROM,
+    }),
     /**
      * ...add more providers here.
      *
@@ -55,9 +68,9 @@ export const authConfig = {
      * @see https://next-auth.js.org/providers/github
      */
   ],
-  pages: {
-    signIn: "/sign-in",
-  },
+//   pages: {
+//     signIn: "/sign-in",
+//   },
   adapter: PrismaAdapter(db) as Adapter,
   callbacks: {
     async session({ session, user }) {
