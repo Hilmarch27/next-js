@@ -49,14 +49,16 @@ export const authConfig = {
     // node mailer for magic link
     Nodemailer({
       server: {
-        host: env.EMAIL_SERVER_HOST,
-        port: env.EMAIL_SERVER_PORT,
+        service: "gmail",
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
         auth: {
-          user: env.EMAIL_SERVER_USER,
-          pass: env.EMAIL_SERVER_PASSWORD,
+          user: "dev.hilmarch@gmail.com",
+          pass: "quoyikfslmjceapt",
         },
       },
-      from: env.EMAIL_FROM,
+      from: "noreply@dev.hilmarch",
     }),
     /**
      * ...add more providers here.
@@ -68,9 +70,9 @@ export const authConfig = {
      * @see https://next-auth.js.org/providers/github
      */
   ],
-//   pages: {
-//     signIn: "/sign-in",
-//   },
+  //   pages: {
+  //     signIn: "/sign-in",
+  //   },
   adapter: PrismaAdapter(db) as Adapter,
   callbacks: {
     async session({ session, user }) {
