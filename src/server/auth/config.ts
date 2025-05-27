@@ -59,6 +59,7 @@ export const authConfig = {
         },
       },
       from: env.EMAIL_FROM,
+      
     }),
     /**
      * ...add more providers here.
